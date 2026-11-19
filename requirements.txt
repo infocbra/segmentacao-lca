@@ -1,0 +1,21 @@
+# Deep Learning
+torch
+torchvision
+
+# Manipulação de dados
+numpy
+pandas
+
+# Processamento científico
+scipy
+scikit-learn
+
+# Visualização
+matplotlib
+
+# Utilitários
+tqdm
+
+# Notebooks
+jupyter
+ipykernel
