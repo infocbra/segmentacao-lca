@@ -26,3 +26,6 @@ env/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Arrays NumPy e dados processados
+*.npy
