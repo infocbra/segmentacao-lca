@@ -19,3 +19,4 @@ Desenvolver e avaliar modelos de segmentação baseados na arquitetura U-Net, co
 - PyTorch
 - U-Net
 - Google Colab
+- Jupyter Notebook
