@@ -1,0 +1,28 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Ambientes virtuais
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dados médicos e imagens
+*.dcm
+*.nii
+*.nii.gz
+*.nrrd
+*.mha
+
+# Modelos treinados
+*.pth
+*.pt
+*.ckpt
+
+# Sistema
+.DS_Store
+Thumbs.db
