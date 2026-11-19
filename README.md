@@ -1,6 +1,6 @@
-﻿# TCC sobre Segmentação do LCA
+﻿# Projeto sobre Segmentação do LCA
 
-Trabalho de Conclusão de Curso voltado à segmentação automática do Ligamento Cruzado Anterior (LCA) em imagens de ressonância magnética do joelho utilizando técnicas de aprendizado profundo e redes neurais convolucionais.
+Projeto voltado à segmentação automática do Ligamento Cruzado Anterior (LCA) em imagens de ressonância magnética do joelho utilizando técnicas de aprendizado profundo e redes neurais convolucionais.
 
 ## Objetivo
 
