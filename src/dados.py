@@ -25,6 +25,25 @@ class DatasetLCA(Dataset):
     def __init__(self, pasta_base, exames_ids, transform=None):
         self.pasta_imagens = os.path.join(pasta_base, "Imagens")
         self.pasta_mascaras = os.path.join(pasta_base, "Mascaras")
+        
+   #Caso escreva um caminho errado, o Python apresentará um erro. 
+        if not os.path.isdir(self.pasta_imagens):
+            raise FileNotFoundError(
+        f"Pasta de imagens não encontrada: {self.pasta_imagens}"
+    )
+
+        if not os.path.isdir(self.pasta_mascaras):
+            raise FileNotFoundError(
+        f"Pasta de máscaras não encontrada: {self.pasta_mascaras}"
+    )
+
+    #Se uma máscara estiver faltando, o código avisara.
+        if not os.path.exists(caminho_mask):
+            raise FileNotFoundError(
+        f"Máscara não encontrada para: {nome_img}"
+    )
+
+self.pares.append((caminho_img, caminho_mask))
         self.transform = transform
         self.pares = []
 
