@@ -10,6 +10,14 @@ def calcular_dice_fatia(mask_real, mask_pred, eps=1e-7):
     soma = np.sum(mask_real) + np.sum(mask_pred)
     return (2.0 * intersecao + eps) / (soma + eps)
 
+
+# Calcula o IoU de uma unica fatia para mostrar no titulo da imagem
+def calcular_iou_fatia(mask_real, mask_pred, eps=1e-7):
+    intersecao = np.sum(mask_real * mask_pred)
+    uniao = np.sum(mask_real) + np.sum(mask_pred) - intersecao
+    return (intersecao + eps) / (uniao + eps)
+
+
 # Carrega os pesos salvos (.pth), roda no conjunto de teste e salva figuras comparativas em PNG
 def gerar_predicoes_visuais(
     modelo,
@@ -18,7 +26,7 @@ def gerar_predicoes_visuais(
     pasta_saida,
     dispositivo="cuda",
     limiar=0.5,
-    max_figuras=None,  
+    max_figuras=None,
 ):
     os.makedirs(pasta_saida, exist_ok=True)
 
@@ -31,17 +39,14 @@ def gerar_predicoes_visuais(
 
     salvas = 0
 
-    # Desativa o calculo de gradientes
     with torch.no_grad():
         for imagens, mascaras in loader_teste:
             imagens = imagens.to(dispositivo)
 
-            # Gera logits, aplica Sigmoid (0 a 1) e transforma em mascara binaria (0 ou 1)
             logits = modelo(imagens)
             probs = torch.sigmoid(logits)
             preds = (probs > limiar).float()
 
-            # Move para CPU/NumPy para plotar com o Matplotlib
             imgs_np = imagens.cpu().numpy()
             masks_np = mascaras.cpu().numpy()
             preds_np = preds.cpu().numpy()
@@ -56,6 +61,7 @@ def gerar_predicoes_visuais(
                 mask_pred = preds_np[i, 0]
 
                 dice = calcular_dice_fatia(mask_real, mask_pred)
+                iou = calcular_iou_fatia(mask_real, mask_pred)
 
                 fig, axes = plt.subplots(1, 4, figsize=(16, 4))
 
@@ -84,10 +90,16 @@ def gerar_predicoes_visuais(
                     vmin=0,
                     vmax=1,
                 )
-                axes[3].set_title(f"Sobreposicao (Dice: {dice:.3f})")
+                axes[3].set_title(f"Sobreposicao (Dice: {dice:.3f} | IoU: {iou:.3f})")
 
                 for ax in axes:
                     ax.axis("off")
 
                 plt.tight_layout()
-                caminho_png = os.path.join(pasta_saida, f"pred_teste_{salvas +
+                caminho_png = os.path.join(pasta_saida, f"pred_teste_{salvas + 1:02d}.png")
+                plt.savefig(caminho_png, dpi=150, bbox_inches="tight")
+                plt.close(fig)
+
+                salvas += 1
+
+    print(f"{salvas} figuras salvas em: {pasta_saida}")
