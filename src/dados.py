@@ -24,7 +24,7 @@ class DatasetLCA(Dataset):
 
     def __init__(self, pasta_base, exames_ids, transform=None):
         self.pasta_imagens = os.path.join(pasta_base, "Imagens")
-        self.pasta_mascaras = os.path.join(pasta_base, "MASCARAS")
+        self.pasta_mascaras = os.path.join(pasta_base, "Mascaras")
         self.transform = transform
         self.pares = []
 
