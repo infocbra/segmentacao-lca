@@ -18,6 +18,7 @@ def obter_transformacoes_treino():
         ),
     ])
 
+caminho_splits="/content/drive/MyDrive/Segmentação_LCA/metadata/splits.csv"
 
 class DatasetLCA(Dataset):
    #Dataset customizado do PyTorch para carregar pares de fatias (.npy) de RM do joelho e mascaras do LCA.
