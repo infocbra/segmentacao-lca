@@ -13,4 +13,4 @@ Os modelos treinados nos 5 folds da validação cruzada foram avaliados sobre o 
 | **U-Net Pré-treinada (Com Augmentation)** | 0.6124 ± 0.0683 | 0.4680 ± 0.0577 |
 
 ## Visualizações Gráficas
-Os gráficos gerados durante a análise comparativa encontram-se salvos na pasta `Graficos/`.
+Os gráficos gerados durante a análise comparativa encontram-se salvos na pasta `Graficos`.
